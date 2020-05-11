@@ -56,62 +56,75 @@ class _BMIState extends State<BMI> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.grey[900],
-        title: Text("BMI Calculator"),
-        centerTitle: true,
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end:Alignment.bottomRight,
+          stops: [.3,.9],
+          colors: [
+            Colors.redAccent,
+            Colors.white,
+          ]
+        ),
       ),
-      body:Column(
-        children: <Widget>[
-          Image.asset("assets/logo.png",height: 200,),
-          Expanded(
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Row(
-                    children: <Widget>[
-                      Expanded(child: _card("Height",_heightcontroller,"  cm",Icon(Icons.accessibility_new,color: Colors.white,size: 35,)),),
-                      Expanded(child: _card("Weight",_weightcontroller,"  kg",Icon(Icons.av_timer,color: Colors.white,size: 35)),),
-                      Expanded(child: _card("Age",_agecontroller,"  years",Icon(Icons.cake,color: Colors.white,size: 35)),)
-                    ],
-                  ),
-                  SizedBox(height: 20.0,),
-                 Row(
-                   mainAxisAlignment: MainAxisAlignment.center,
-                   children: <Widget>[
-                     RaisedButton(color: Colors.white,
-                       child: Text("Get BMI",style: TextStyle(color: Colors.green),),
-                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0),side: BorderSide(color: Colors.green,width: 3.0),),
-                    onPressed: () {
-                       Calculate();
-                       if(_result==0.0)
-                         Text(message);
-                       else
-                       Navigator.push(context, new MaterialPageRoute(builder: (context) => new ResultBMI(_result, message,img)));
-                    }
-                     ),
-                      SizedBox(width: 40.0,),
-                     RaisedButton(
-                       color: Colors.white,
-                       child: Text("Clear",style: TextStyle(color: Colors.red),),
-                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0),side: BorderSide(color: Colors.red,width: 3.0),),
-                     onPressed: (){
-                         print("clear clikde");
-                         clear();},
-                     ),
-                   ],
-                 ),
-                ],
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
+          backgroundColor: Colors.grey[900],
+          title: Text("BMI Calculator"),
+          centerTitle: true,
+        ),
+        body:Column(
+          children: <Widget>[
+            Image.asset("assets/logo.png",height: 200,),
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Row(
+                      children: <Widget>[
+                        Expanded(child: _card("Height",_heightcontroller,"  cm",Icon(Icons.accessibility_new,color: Colors.white,size: 35,)),),
+                        Expanded(child: _card("Weight",_weightcontroller,"  kg",Icon(Icons.av_timer,color: Colors.white,size: 35)),),
+                        Expanded(child: _card("Age",_agecontroller,"  years",Icon(Icons.cake,color: Colors.white,size: 35)),)
+                      ],
+                    ),
+                    SizedBox(height: 20.0,),
+                   Row(
+                     mainAxisAlignment: MainAxisAlignment.center,
+                     children: <Widget>[
+                       RaisedButton(color: Colors.white,
+                         child: Text("Get BMI",style: TextStyle(color: Colors.green),),
+                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0),side: BorderSide(color: Colors.green,width: 3.0),),
+                      onPressed: () {
+                         Calculate();
+                         if(_result==0.0)
+                           Text(message);
+                         else
+                         Navigator.push(context, new MaterialPageRoute(builder: (context) => new ResultBMI(_result, message,img)));
+                      }
+                       ),
+                        SizedBox(width: 40.0,),
+                       RaisedButton(
+                         color: Colors.white,
+                         child: Text("Clear",style: TextStyle(color: Colors.red),),
+                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0),side: BorderSide(color: Colors.red,width: 3.0),),
+                       onPressed: (){
+                           print("clear clikde");
+                           clear();},
+                       ),
+                     ],
+                   ),
+                  ],
+                ),
               ),
             ),
-          ),
 
-        ],
-      )
+          ],
+        )
+      ),
     );
   }
 }
